@@ -1,5 +1,5 @@
 
-# What is OpenRadioss?
+# What is OpenRadioss?   
 
 **Altair® Radioss®** is an industry-proven analysis solution that helps users evaluate and optimize product performance for highly nonlinear problems  under dynamic loadings. For more than 30 years, organizations have used Altair Radioss to streamline and optimize the digital design process, replace costly physical tests with quick and efficient simulation, and speed up design optimization iterations.
 
