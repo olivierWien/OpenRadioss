@@ -97,7 +97,7 @@ endif()
 
 
 set(Vect_opt "-march=armv8-a  -D COMP_ARMFLANG=1 -D ARCH_CPU=ARM -fopenmp")
-set(Vect_precise "-nofma -ffp-contract=off -fno-unsafe-math-optimizations -fno-fast-math -fno-simdmath")
+set(Vect_precise "-nofma -ffp-contract=off -fno-unsafe-math-optimizations -fno-fast-math -fveclib=none")
 set(Fortran "-ffixed-line-length-none")
 
 if ( debug STREQUAL "1" )
@@ -146,7 +146,6 @@ set (LINK "dl ${mpi_lib} ${zlib_lib} -lrt -lm -lstdc++"  )
 set (F_O0 " -O0 ${Vect_opt} ${Vect_precise} ${precision_flag} ${Fortran} ${mpi_flag} ${wo_linalg} ${cppmach} ${cpprel} ${h3d_inc}")
 set (F_O1 " -O1 ${Vect_opt} ${Vect_precise} ${precision_flag} ${Fortran} ${mpi_flag} ${wo_linalg} ${cppmach} ${cpprel} ${h3d_inc}")
 set (F_O2 " -O2 ${Vect_opt} ${Vect_precise} ${precision_flag} ${Fortran} ${mpi_flag} ${wo_linalg} ${cppmach} ${cpprel} ${h3d_inc}")
-set (F_O2 " -O3 ${Vect_opt} ${Vect_precise} ${precision_flag} ${Fortran} ${mpi_flag} ${wo_linalg} ${cppmach} ${cpprel} ${h3d_inc}")
 
 set (C_BASIC "-fopenmp ${cppmach} ${cpprel}")
 
@@ -165,6 +164,23 @@ set_source_files_properties( ${source_directory}/source/input/redkey0.F PROPERTI
 set_source_files_properties( ${source_directory}/source/interfaces/inter3d/i3fri3.F PROPERTIES COMPILE_FLAGS ${F_O1})
 
 set_source_files_properties( ${source_directory}/source/output/restart/arralloc.F PROPERTIES COMPILE_FLAGS ${F_O2})
+
+
+# NEW COMPILER
+set_source_files_properties( ${source_directory}/source/interfaces/int07/i7for3.F PROPERTIES COMPILE_FLAGS ${F_O0})
+
+set_source_files_properties( ${source_directory}/source/interfaces/int07/i7dst3.F PROPERTIES COMPILE_FLAGS ${F_O0})
+
+set_source_files_properties( ${source_directory}/source/time_step/dtnoda.F  PROPERTIES COMPILE_FLAGS ${F_O0})
+
+# Trials
+set_source_files_properties( ${source_directory}/source/system/parit.F PROPERTIES COMPILE_FLAGS ${F_O0})
+set_source_files_properties( ${source_directory}/source/airbag/airbag1.F PROPERTIES COMPILE_FLAGS ${F_O0})
+set_source_files_properties( ${source_directory}/source/airbag/airbaga1.F PROPERTIES COMPILE_FLAGS ${F_O0})
+set_source_files_properties( ${source_directory}/source/airbag/volum0.F PROPERTIES COMPILE_FLAGS ${F_O0})
+set_source_files_properties( ${source_directory}/source/interfaces/int11/i11dst3.F PROPERTIES COMPILE_FLAGS ${F_O0})
+set_source_files_properties( ${source_directory}/source/interfaces/int11/i11for3.F PROPERTIES COMPILE_FLAGS ${F_O0})
+
 
 endif()
 
