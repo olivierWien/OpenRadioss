@@ -43,7 +43,7 @@ keep_results=0
 tests=
 clean=0
 verbose=''
-
+mpi_suf=''
 
 for var in "$@"
 do
@@ -63,6 +63,7 @@ do
     if [ "$arg" == "-mpi" ]
     then
          mpi=`echo $var|awk -F '=' '{print $2}'`
+         mpi_suf=_${mpi}
     fi
 
     if [ "$arg" == "-np" ]
@@ -100,7 +101,7 @@ do
    done
 
 # As this is a bash script it is intended to be executed on Linux Plarforms.
-test_directory=ctest_suite_linux
+test_directory=ctest_suite_${arch}${mpi_suf}
 
 echo " " 
 echo " test_script"

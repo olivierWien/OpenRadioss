@@ -193,7 +193,8 @@ def verify_integer_tolerance(word,ref,res,test_json):
 #    Abs_tolerance  : Absolute Tolerance diff between Result & run must be in Range 
 # ----------------------------------------------------------------------------------
   if (test_json == []):
-    return 0
+    string=' ---- NoTol'
+    return 0,string
   
   tol_word='TOL_'+word
   entry=test_json
@@ -209,6 +210,7 @@ def verify_integer_tolerance(word,ref,res,test_json):
        ires=int(res)
        diff = abs(iref-ires)
        if (diff < itol):
+         string=' ---- Tol : abs(Ref-Run)<Tol : ',str(diff),' > ',str(itol)
          return 1,string
        else:
          string=' ---- Tol : abs(Ref-Run)<Tol : ',str(diff),' > ',str(itol)
@@ -242,11 +244,10 @@ def compare(words,reference,results,test_json,default_tol,prec):
     if (word == 'CYCLE'):
        ref_cycle=int(reference[word])
        cycle=int(results[word])
-
        if (ref_cycle != cycle):
          result,tol_info = verify_integer_tolerance(word,ref_cycle,cycle,test_json)
          if (result == 0):
-            cycle_error='    '+word.ljust(10,' ')+'  Ref: '+str(ref_cycle).ljust(12,' ')+' ----  Run: '+str(cycle)+tol_info+'\n'
+            cycle_error='    '+word.ljust(10,' ')+'  Ref: '+str(ref_cycle).ljust(12,' ')+' ----  Run: '+str(cycle).ljust(12,' ')+tol_info+'\n'
             Error=Error+cycle_error
             Error_found = Error_found+1
 
@@ -325,7 +326,15 @@ def compare(words,reference,results,test_json,default_tol,prec):
                     tol = default_tol["Diff_tolerance"]
                   
                   tolerance=["Diff_tolerance",tol]
-                  result,tol_info = compute_tolerance(ref,res,tolerance)
+                  if ref < Zero_tol :
+                     if abs(res) < float(tol):
+                        result=1
+                        tol_info=" ---- Tol : abs(Run) < Tol : "+str(abs(result))+"<"+tol
+                     else:
+                        result=0
+                        tol_info=" ---- Tol : abs(Run) < Tol : "+str(abs(result))+"<"+tol
+                  else:
+                    result,tol_info = compute_tolerance(ref,res,tolerance)
 
            # Result = 0 -> difference detected
            # Result = 1 -> Within tolerance
