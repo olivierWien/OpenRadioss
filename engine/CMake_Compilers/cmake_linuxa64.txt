@@ -167,19 +167,9 @@ set_source_files_properties( ${source_directory}/source/output/restart/arralloc.
 
 
 # NEW COMPILER
-set_source_files_properties( ${source_directory}/source/interfaces/int07/i7for3.F PROPERTIES COMPILE_FLAGS ${F_O0})
-
 set_source_files_properties( ${source_directory}/source/interfaces/int07/i7dst3.F PROPERTIES COMPILE_FLAGS ${F_O0})
-
 set_source_files_properties( ${source_directory}/source/time_step/dtnoda.F  PROPERTIES COMPILE_FLAGS ${F_O0})
-
-# Trials
-set_source_files_properties( ${source_directory}/source/system/parit.F PROPERTIES COMPILE_FLAGS ${F_O0})
-set_source_files_properties( ${source_directory}/source/airbag/airbag1.F PROPERTIES COMPILE_FLAGS ${F_O0})
-set_source_files_properties( ${source_directory}/source/airbag/airbaga1.F PROPERTIES COMPILE_FLAGS ${F_O0})
-set_source_files_properties( ${source_directory}/source/airbag/volum0.F PROPERTIES COMPILE_FLAGS ${F_O0})
 set_source_files_properties( ${source_directory}/source/interfaces/int11/i11dst3.F PROPERTIES COMPILE_FLAGS ${F_O0})
-set_source_files_properties( ${source_directory}/source/interfaces/int11/i11for3.F PROPERTIES COMPILE_FLAGS ${F_O0})
 
 
 endif()
