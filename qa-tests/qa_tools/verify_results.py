@@ -326,7 +326,7 @@ def compare(words,reference,results,test_json,default_tol,prec):
                     tol = default_tol["Diff_tolerance"]
                   
                   tolerance=["Diff_tolerance",tol]
-                  if ref < Zero_tol :
+                  if abs(ref) < Zero_tol :
                      if abs(res) < float(tol):
                         result=1
                         tol_info=" ---- Tol : abs(Run) < Tol : "+str(abs(result))+"<"+tol
